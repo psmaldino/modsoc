@@ -5,12 +5,12 @@ globals [
 
 to setup
   clear-all ;;clear/reset all variables
-  set-default-shape turtles "default" ;;make the turtles arrows
   ;set-default-shape turtles "circle" ;;make the turtles circles (default is arrows)
+  set-default-shape turtles "default"
   ;;make a bunch of green turtles
   create-turtles num-particles [
     set color green
-    set size 2 ;;if default shape, make them easier to see
+    set size 2
     setxy random-xcor random-ycor
     set heading random 360 ;;give them a random heading
   ]
@@ -21,15 +21,19 @@ end
 
 
 to go
+  ;;if ticks > 1000 [set flock? true]
   ask turtles [
     ;;turn a random amount
+
+    if flock? [flock]
+
     right random whimsy
     left random whimsy
     forward speed ;;move forward
 
     ;; if there is at least 1 other turtle near, set new heading
-    if count turtles in-radius 1 > 1 [
-      ask turtles in-radius 1 [
+    if count turtles in-radius size > 1 [
+      ask turtles in-radius size [
         set heading random 360
         fd 0.1
       ]
@@ -49,11 +53,15 @@ end
 ;  ask turtles [
 ;    ifelse pen-down? [pen-down][pen-up]
 ;    ;;turn a random amount
+;    if flock? [flock]
 ;    move
 ;    bounce-turtle
 ;  ]
 ;  tick
 ;end
+
+
+
 
 
 to move
@@ -66,20 +74,27 @@ end
 
 to bounce-turtle
   ;; if there is at least 1 other turtle near, set new heading
-  if count turtles in-radius size > 1 [
-    ask turtles in-radius size [
+  if count turtles in-radius 1 > 1 [
+    ask turtles in-radius 1 [
       set heading random 360
-      fd 0.1
+      fd .01
     ]
     set collisions (collisions + 1)
   ]
 end
+
+to flock
+  if any? other turtles in-radius vision-radius [
+    let mean-heading (mean [heading] of other turtles in-radius vision-radius)
+    set heading mean-heading
+  ]
+end
 @#$#@#$#@
 GRAPHICS-WINDOW
-229
-10
-724
-506
+234
+33
+729
+529
 -1
 -1
 4.822
@@ -103,10 +118,10 @@ ticks
 30.0
 
 BUTTON
-99
-10
-215
-45
+104
+33
+220
+68
 NIL
 go
 T
@@ -120,10 +135,10 @@ NIL
 0
 
 BUTTON
-16
-10
-92
-44
+21
+33
+97
+67
 NIL
 setup
 NIL
@@ -137,55 +152,55 @@ NIL
 1
 
 SLIDER
-16
-57
-215
-90
+21
+80
+220
+113
 num-particles
 num-particles
 1
 500
-50.0
+300.0
 1
 1
 NIL
 HORIZONTAL
 
 SLIDER
-15
-102
-215
-135
+20
+125
+220
+158
 whimsy
 whimsy
 0
 180
-0.0
+10.0
 1
 1
 NIL
 HORIZONTAL
 
 SLIDER
-15
-144
-214
-177
+20
+167
+219
+200
 speed
 speed
 .001
 .05
-0.02
+0.03
 .001
 1
 NIL
 HORIZONTAL
 
 PLOT
-15
-187
-215
-337
+20
+210
+220
+360
 collisions
 time
 # collisions
@@ -200,15 +215,41 @@ PENS
 "default" 1.0 0 -16777216 true "" "plot collisions"
 
 MONITOR
-15
-345
-215
-390
+20
+368
+220
+413
 NIL
 collisions
 17
 1
 11
+
+SLIDER
+26
+419
+198
+452
+vision-radius
+vision-radius
+0
+10
+5.0
+.1
+1
+NIL
+HORIZONTAL
+
+SWITCH
+51
+462
+154
+495
+flock?
+flock?
+0
+1
+-1000
 
 @#$#@#$#@
 ## WHAT IS IT?
@@ -556,26 +597,6 @@ NetLogo 6.2.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
-<experiments>
-  <experiment name="experiment" repetitions="1" runMetricsEveryStep="true">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="10000"/>
-    <metric>count turtles</metric>
-    <metric>collisions</metric>
-    <enumeratedValueSet variable="speed">
-      <value value="0.02"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="whimsy">
-      <value value="0"/>
-      <value value="180"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="num-particles">
-      <value value="50"/>
-      <value value="200"/>
-    </enumeratedValueSet>
-  </experiment>
-</experiments>
 @#$#@#$#@
 @#$#@#$#@
 default
