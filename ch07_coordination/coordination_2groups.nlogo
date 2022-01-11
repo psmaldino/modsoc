@@ -53,13 +53,13 @@ to setup-turtles
   ask turtles with [pcolor = 0] [
    set groupID 0
    set shape "circle"
-   if(random-float 1 < init-norm1-group1)
+   if(random-float 1 < init-norm1-groupA)
      [set norm1? true]
   ]
   ask turtles with [pcolor = 1] [
    set groupID 1
    set shape "square"
-   if(random-float 1 < init-norm1-group2)
+   if(random-float 1 < init-norm1-groupB)
      [set norm1? true]
   ]
 end
@@ -135,11 +135,11 @@ to-report frequency-norm1
   report (count turtles with [norm1?]) / (count turtles)
 end
 
-to-report freq-norm1-group1
+to-report freq-norm1-groupA
   report (count turtles with [norm1? and groupID = 0]) / (count turtles with [groupID = 0])
 end
 
-to-report freq-norm1-group2
+to-report freq-norm1-groupB
   report (count turtles with [norm1? and groupID = 1]) / (count turtles with [groupID = 1])
 end
 @#$#@#$#@
@@ -280,16 +280,16 @@ true
 true
 "" ""
 PENS
-"group 1" 1.0 0 -3844592 true "" "plot freq-norm1-group1"
-"group 2" 1.0 0 -14454117 true "" "plot freq-norm1-group2"
+"group A" 1.0 0 -3844592 true "" "plot freq-norm1-groupA"
+"group B" 1.0 0 -14454117 true "" "plot freq-norm1-groupB"
 
 SLIDER
 56
 195
 285
 228
-init-norm1-group1
-init-norm1-group1
+init-norm1-groupA
+init-norm1-groupA
 0
 1
 0.8
@@ -303,8 +303,8 @@ SLIDER
 233
 285
 266
-init-norm1-group2
-init-norm1-group2
+init-norm1-groupB
+init-norm1-groupB
 0
 1
 0.2
@@ -702,10 +702,10 @@ NetLogo 6.2.0
     <enumeratedValueSet variable="norm1-rarity-cost">
       <value value="0.5"/>
     </enumeratedValueSet>
-    <enumeratedValueSet variable="init-norm1-group1">
+    <enumeratedValueSet variable="init-norm1-groupA">
       <value value="0.8"/>
     </enumeratedValueSet>
-    <enumeratedValueSet variable="init-norm1-group2">
+    <enumeratedValueSet variable="init-norm1-groupB">
       <value value="0.2"/>
     </enumeratedValueSet>
   </experiment>
