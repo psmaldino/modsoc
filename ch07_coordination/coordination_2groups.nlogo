@@ -689,7 +689,7 @@ NetLogo 6.2.0
     <setup>setup</setup>
     <go>go</go>
     <timeLimit steps="1000"/>
-    <metric>freq-norm1-group2</metric>
+    <metric>freq-norm1-groupB</metric>
     <enumeratedValueSet variable="prob-outgroup-observation">
       <value value="0.014"/>
       <value value="0.016"/>
