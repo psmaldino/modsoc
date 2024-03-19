@@ -624,35 +624,11 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.2.2
+NetLogo 6.3.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
 <experiments>
-  <experiment name="first batch run" repetitions="10" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="100"/>
-    <metric>count turtles</metric>
-    <metric>count turtles with [not happy?]</metric>
-    <metric>percent-similar</metric>
-    <enumeratedValueSet variable="density">
-      <value value="40"/>
-      <value value="65"/>
-      <value value="90"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="min-pct-similar" first="5" step="5" last="70"/>
-  </experiment>
-  <experiment name="second batch run" repetitions="100" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="100"/>
-    <metric>count turtles</metric>
-    <metric>count turtles with [not happy?]</metric>
-    <metric>percent-similar</metric>
-    <steppedValueSet variable="density" first="10" step="10" last="90"/>
-    <steppedValueSet variable="min-pct-similar" first="5" step="5" last="70"/>
-  </experiment>
   <experiment name="book batch" repetitions="100" runMetricsEveryStep="false">
     <setup>setup</setup>
     <go>go</go>
