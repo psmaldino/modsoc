@@ -53,7 +53,7 @@ to science
   ask turtles[
     if random-float 1 < new-hypothesis [ ;;tackle a new study?
       let actual-truth? false
-      if base-rate < random-float 1
+      if random-float 1 < base-rate 
         [ set actual-truth? true ]
       ifelse actual-truth?
       ;;if true, pos result with probability power
